@@ -158,7 +158,7 @@ If the **BUTTON TYPE** of the switch connected to the device is set to `momentar
 
 Also, some devices do not add an entity for the button/switch. For example, the Shelly Button1 has only one entity for the battery level. It does not have an entity for the button itself. To trigger automations based on button presses, use the `shelly.click` event.
 
-At last it's possible to send events from scripts using the [Shelly.emitEvent()](https://shelly-api-docs.shelly.cloud/gen2/Scripts/ShellyScriptLanguageFeatures#shellyemitevent) function, these events will show up under the type `shelly.script_event`.
+At last, it's possible to send events from scripts using the [Shelly.emitEvent()](https://shelly-api-docs.shelly.cloud/gen2/Scripts/ShellyScriptLanguageFeatures#shellyemitevent) function, these events will show up under the type `shelly.script_event`.
 
 ### Listening for events
 
