@@ -158,8 +158,6 @@ If the **BUTTON TYPE** of the switch connected to the device is set to `momentar
 
 Also, some devices do not add an entity for the button/switch. For example, the Shelly Button1 has only one entity for the battery level. It does not have an entity for the button itself. To trigger automations based on button presses, use the `shelly.click` event.
 
-At last, it's possible to send events from scripts using the [Shelly.emitEvent()](https://shelly-api-docs.shelly.cloud/gen2/Scripts/ShellyScriptLanguageFeatures#shellyemitevent) function, these events will show up under the type `shelly.script_event`.
-
 ### Listening for events
 
 You can subscribe to the `shelly.click` event type in [Developer Tools/Events](/docs/tools/dev-tools/) in order to examine the event data JSON for the correct parameters to use in your automations. For example, `shelly.click` returns event data JSON similar to the following when you press the Shelly Button1.
@@ -186,32 +184,6 @@ Event 0 fired 9:53 AM:
 ```
 
 The `generation` value indicates the generation of the device that is the source of the event.
-
-The `shelly.script_event` returns event data JSON similar to the following when using the example code for [Shell.emitEvent()](https://shelly-api-docs.shelly.cloud/gen2/Scripts/ShellyScriptLanguageFeatures#shellyemitevent).
-
-```json
-Event 1 fired 9:50 AM:
-{
-    "event_type": "shelly.script_event",
-    "data": {
-        "device_id": "e58a73d99f7c0d789d80e60ac20d0e01",
-        "device": "shellyplus2pm-d0ef76c7242c",
-        "component": "script:1",
-        "event": "this_happened",
-        "data": {
-            "why": 42,
-            "what": "when"
-        }
-    },
-    "origin": "LOCAL",
-    "time_fired": "2025-01-19T08:50:52.214180+00:00",
-    "context": {
-        "id": "01JHYW3YNPBHP6C5Z8BJDTPHDN",
-        "parent_id": null,
-        "user_id": null
-    }
-}
-```
 
 ### Automations
 
@@ -359,7 +331,9 @@ The integration supports the following virtual components:
 
 ## Scripts (generation 2 and 3)
 
-For each device script, the integration creates a `switch` entity that allows you to control the script. These entities are disabled by default.
+For each device script, the integration creates a `switch` entity that allows you to control the script and an `event` entity. These entities are disabled by default.
+
+The `event` entity shows event that are emitted by the script using [Shelly.emitEvent()](https://shelly-api-docs.shelly.cloud/gen2/Scripts/ShellyScriptLanguageFeatures#shellyemitevent). After changing a script, it's required to manually reload the device before new event types show up.
 
 ## Additional info
 
